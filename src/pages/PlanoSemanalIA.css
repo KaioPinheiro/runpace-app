@@ -1,0 +1,172 @@
+.plano-ia-form {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.plano-ia-campos {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.plano-ia-resultado {
+  margin-top: 30px;
+  padding: 30px;
+  color: #f8fafc;
+  background: linear-gradient(145deg, rgba(30, 41, 59, .96), rgba(15, 23, 42, .96));
+  border: 1px solid rgba(56, 189, 248, .32);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(2, 6, 23, .3);
+  text-align: left;
+}
+
+.plano-ia-resultado > header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.plano-ia-resultado header > div > span {
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.plano-ia-resultado h2 {
+  margin: 7px 0 0;
+  color: #f8fafc;
+  font-size: 30px;
+  font-weight: 850;
+}
+
+.plano-ia-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.plano-ia-badges span {
+  padding: 6px 10px;
+  color: #bae6fd;
+  background: rgba(14, 165, 233, .1);
+  border: 1px solid rgba(56, 189, 248, .22);
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.plano-ia-observacoes {
+  margin-top: 18px;
+  color: #94a3b8;
+  line-height: 1.55;
+}
+
+.plano-ia-alerta {
+  margin-top: 15px;
+  padding: 12px 14px;
+  color: #fde68a;
+  background: rgba(245, 158, 11, .09);
+  border: 1px solid rgba(245, 158, 11, .25);
+  border-radius: 10px;
+}
+
+.plano-ia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+  margin-top: 26px;
+}
+
+.plano-ia-card {
+  padding: 19px;
+  background: rgba(2, 6, 23, .48);
+  border: 1px solid #334155;
+  border-radius: 15px;
+  transition: 200ms ease;
+}
+
+.plano-ia-card:hover {
+  border-color: rgba(56, 189, 248, .55);
+  transform: translateY(-3px);
+}
+
+.plano-ia-card-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.plano-ia-card-topo span {
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.plano-ia-card-topo strong {
+  color: #bae6fd;
+  font-size: 11px;
+}
+
+.plano-ia-card h3 {
+  margin: 15px 0 9px;
+  color: #f8fafc;
+  font-size: 19px;
+}
+
+.plano-ia-card > p {
+  min-height: 62px;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.plano-ia-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.plano-ia-card dl div {
+  padding: 8px 4px;
+  background: rgba(15, 23, 42, .75);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.plano-ia-card dt {
+  color: #64748b;
+  font-size: 9px;
+}
+
+.plano-ia-card dd {
+  margin: 4px 0 0;
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.plano-ia-card small {
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+@media (max-width: 600px) {
+  .plano-ia-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .plano-ia-resultado {
+    padding: 22px 17px;
+  }
+
+  .plano-ia-resultado > header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .plano-ia-grid {
+    grid-template-columns: 1fr;
+  }
+}
