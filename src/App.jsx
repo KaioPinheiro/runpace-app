@@ -84,7 +84,7 @@ function App() {
             path="/login"
             element={
               token
-                ? <Dashboard />
+                ? <GerarTreinoIA />
                 : <Login atualizarToken={atualizarToken} />
             }
           />
