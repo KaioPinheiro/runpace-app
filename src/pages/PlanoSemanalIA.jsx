@@ -116,7 +116,6 @@ function PlanoSemanalIA() {
         onAlternarDia={alternarDia}
         onSubmit={enviar}
         setErro={setErro}
-        setForm={setForm}
       />
 
       <ResultadoPlanoSemanal

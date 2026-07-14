@@ -5,7 +5,6 @@ export { DIAS_SEMANA };
 export const FORM_INICIAL_PLANO = {
   objetivo: "",
   objetivoPersonalizado: "",
-  idade: "",
   experienciaCorrida: "",
   volumeSemanalAtual: "",
   ritmoConfortavel: "",

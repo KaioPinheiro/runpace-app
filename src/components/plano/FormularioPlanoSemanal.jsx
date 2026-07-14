@@ -27,8 +27,7 @@ function FormularioPlanoSemanal({
   onAlterar,
   onAlternarDia,
   onSubmit,
-  setErro,
-  setForm
+  setErro
 }) {
   return (
     <form className="coach-ia-form plano-ia-form" onSubmit={onSubmit}>
@@ -57,38 +56,6 @@ function FormularioPlanoSemanal({
             />
           </label>
         )}
-        <label className="coach-ia-campo">
-          <span>Idade *</span>
-          <input type="number" name="idade" value={form.idade}
-            onChange={(event) => {
-              const valor = event.target.value;
-              if (valor === "" || /^\d+$/.test(valor)) {
-                if (valor === "" || Number(valor) <= 100) {
-                  onAlterar(event);
-                } else {
-                  setErro("A idade máxima permitida é 100 anos.");
-                }
-              }
-            }}
-            onBlur={() => {
-              if (form.idade !== "" && Number(form.idade) < 18) {
-                setForm((atual) => ({ ...atual, idade: "" }));
-                setErro("A idade mínima permitida é 18 anos.");
-              }
-            }}
-            onKeyDown={(event) => {
-              if ([".", ",", "e", "E", "+", "-"].includes(event.key)) {
-                event.preventDefault();
-                setErro("A idade deve ser informada somente com números inteiros.");
-              }
-            }}
-            min="18" max="100" step="1"
-            onInvalid={(event) => {
-              event.preventDefault();
-              setErro("Informe uma idade inteira entre 18 e 100 anos.");
-            }}
-            placeholder="Ex.: 30" required />
-        </label>
         <label className="coach-ia-campo">
           <span>Experiência na corrida *</span>
           <select name="experienciaCorrida" value={form.experienciaCorrida}

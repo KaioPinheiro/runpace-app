@@ -91,16 +91,6 @@ export function alternarDiaDisponivel(formulario, dia) {
 }
 
 export function validarFormularioPlano(formulario) {
-  const idadeNumero = Number(formulario.idade);
-
-  if (
-    !Number.isInteger(idadeNumero) ||
-    idadeNumero < 18 ||
-    idadeNumero > 100
-  ) {
-    return "Informe uma idade inteira entre 18 e 100 anos.";
-  }
-
   if (formulario.diasDisponiveis.length === 0) {
     return "Selecione pelo menos um dia disponível para treinar.";
   }
@@ -124,29 +114,23 @@ export function validarFormularioPlano(formulario) {
 
 export function montarPayloadPlanoSemanal(formulario) {
   const {
-    idade,
     objetivoPersonalizado,
     outraDistanciaAlvo,
     observacoes,
     ...dadosPlano
   } = formulario;
-  const idadeNumero = Number(idade);
-  const perfilAtleta = `Idade: ${idade} anos.`;
 
   return {
     ...dadosPlano,
     objetivo: formulario.objetivo === "Outro"
       ? objetivoPersonalizado.trim()
       : formulario.objetivo,
-    idade: idadeNumero,
     distanciaAlvo: formulario.distanciaAlvo === "Outro"
       ? outraDistanciaAlvo.trim()
       : formulario.distanciaAlvo,
     possuiProva: formulario.possuiProva === "sim",
     intensidadeDesejada: "adequada ao perfil informado",
     observacoes: observacoes.trim()
-      ? `${perfilAtleta} Observações adicionais: ${observacoes.trim()}`
-      : perfilAtleta
   };
 }
 
