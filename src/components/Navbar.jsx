@@ -66,14 +66,14 @@ function Navbar({ atualizarToken }) {
             {menuAberto && (
               <div className="menu-principal-opcoes">
                 <NavLink
-                  to="/plano-semanal-ia"
+                  to="/meu-plano"
                   className={({ isActive }) =>
                     isActive ? "menu-ativo menu-coach-ia" : "menu-coach-ia"
                   }
                   onClick={fecharMenu}
                 >
                   <span className="menu-link-icone" aria-hidden="true">▦</span>
-                  <span>Plano Semanal</span>
+                  <span>Meu Plano</span>
                 </NavLink>
               </div>
             )}

@@ -80,4 +80,9 @@ export async function gerarPlanoSemanalComIA(dadosPlano) {
   return response.data;
 }
 
+export async function gerarPlanoComIA(dadosPlano) {
+  const response = await api.post("/api/ai/gerar-plano", dadosPlano);
+  return response.data;
+}
+
 export default api;

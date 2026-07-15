@@ -1,10 +1,13 @@
 export function obterMensagemErroIa(error, mensagemIndisponivel) {
   const status = error?.response?.status;
   const codigo = error?.code;
-  const mensagemOriginal = String(
+  const mensagemBackend =
     error?.response?.data?.erro ??
-      error?.response?.data?.message ??
-      error?.message ??
+    error?.response?.data?.message ??
+    "";
+  const mensagemOriginal = String(
+    mensagemBackend ||
+      error?.message ||
       ""
   ).toLowerCase();
 
@@ -15,7 +18,7 @@ export function obterMensagemErroIa(error, mensagemIndisponivel) {
     mensagemOriginal.includes("timeout") ||
     mensagemOriginal.includes("demorou")
   ) {
-    return "A geração demorou mais que o esperado. Clique em Gerar novamente.";
+    return "A geracao demorou mais que o esperado. Tente novamente.";
   }
 
   if (
@@ -25,7 +28,11 @@ export function obterMensagemErroIa(error, mensagemIndisponivel) {
     mensagemOriginal.includes("network") ||
     mensagemOriginal.includes("conex")
   ) {
-    return "Verifique sua conexão e tente novamente.";
+    return "Verifique sua conexao e tente novamente.";
+  }
+
+  if (status >= 400 && status < 500 && mensagemBackend) {
+    return String(mensagemBackend);
   }
 
   return mensagemIndisponivel;

@@ -2,6 +2,7 @@ import {
   DIAS_SEMANA,
   DISTANCIAS_ALVO,
   DISTANCIAS_PROVA,
+  DURACOES_PLANO,
   EXPERIENCIAS_CORRIDA,
   IMPORTANCIAS_PROVA,
   OBJETIVOS_PLANO,
@@ -32,8 +33,8 @@ function FormularioPlanoSemanal({
   return (
     <form className="coach-ia-form plano-ia-form" onSubmit={onSubmit}>
       <div className="coach-ia-form-titulo">
-        <div><h2>Configure sua semana</h2></div>
-        <p>O Coach distribuirá os estímulos de segunda a domingo.</p>
+        <div><h2>Configure seu plano</h2></div>
+        <p>Receba um ciclo de corrida personalizado para sua prova-alvo ou objetivo.</p>
       </div>
 
       <div className="coach-ia-campos plano-ia-campos">
@@ -44,6 +45,7 @@ function FormularioPlanoSemanal({
             <OpcoesSelect opcoes={OBJETIVOS_PLANO} />
           </select>
         </label>
+
         {form.objetivo === "Outro" && (
           <label className="coach-ia-campo">
             <span>Objetivo personalizado *</span>
@@ -51,57 +53,101 @@ function FormularioPlanoSemanal({
               name="objetivoPersonalizado"
               value={form.objetivoPersonalizado}
               onChange={onAlterar}
-              placeholder="Ex.: Correr 7 km, completar uma ultramaratona, melhorar meu tempo nos 15 km, correr 30 km em trilha, etc."
+              placeholder="Ex.: correr 10 km, melhorar meu tempo, voltar a correr"
               required
             />
           </label>
         )}
+
         <label className="coach-ia-campo">
-          <span>Experiência na corrida *</span>
-          <select name="experienciaCorrida" value={form.experienciaCorrida}
-            onChange={onAlterar} required>
-            <option value="">Há quanto tempo você corre?</option>
+          <span>Experiencia na corrida *</span>
+          <select
+            name="experienciaCorrida"
+            value={form.experienciaCorrida}
+            onChange={onAlterar}
+            required
+          >
+            <option value="">Ha quanto tempo voce corre?</option>
             <OpcoesSelect opcoes={EXPERIENCIAS_CORRIDA} />
           </select>
         </label>
+
         <label className="coach-ia-campo">
           <span>Volume semanal atual *</span>
-          <select name="volumeSemanalAtual" value={form.volumeSemanalAtual}
-            onChange={onAlterar} required>
-            <option value="">Quantos km você corre por semana?</option>
+          <select
+            name="volumeSemanalAtual"
+            value={form.volumeSemanalAtual}
+            onChange={onAlterar}
+            required
+          >
+            <option value="">Quantos km voce corre por semana?</option>
             <OpcoesSelect opcoes={VOLUMES_SEMANAIS} />
           </select>
         </label>
+
         <label className="coach-ia-campo">
-          <span>Ritmo confortável atual *</span>
-          <select name="ritmoConfortavel" value={form.ritmoConfortavel}
-            onChange={onAlterar} required>
-            <option value="">Qual é seu ritmo confortável atual?</option>
+          <span>Ritmo confortavel atual *</span>
+          <select
+            name="ritmoConfortavel"
+            value={form.ritmoConfortavel}
+            onChange={onAlterar}
+            required
+          >
+            <option value="">Qual e seu ritmo confortavel atual?</option>
             <OpcoesSelect opcoes={RITMOS_CONFORTAVEIS} />
           </select>
         </label>
+
         <label className="coach-ia-campo">
-          <span>Distância alvo *</span>
-          <select name="distanciaAlvo" value={form.distanciaAlvo}
-            onChange={onAlterar} required>
-            <option value="">Selecione a distância alvo</option>
+          <span>Distancia-alvo *</span>
+          <select
+            name="distanciaAlvo"
+            value={form.distanciaAlvo}
+            onChange={onAlterar}
+            required
+          >
+            <option value="">Selecione a distancia alvo</option>
             <OpcoesSelect opcoes={DISTANCIAS_ALVO} />
           </select>
         </label>
+
         {form.distanciaAlvo === "Outro" && (
           <label className="coach-ia-campo">
-            <span>Informe a distância alvo *</span>
-            <input name="outraDistanciaAlvo" value={form.outraDistanciaAlvo}
-              onChange={onAlterar} placeholder="Ex.: 8 km, 12 km, 30 km"
+            <span>Informe a distancia alvo *</span>
+            <input
+              name="outraDistanciaAlvo"
+              value={form.outraDistanciaAlvo}
+              onChange={onAlterar}
+              placeholder="Ex.: 8 km, 12 km, 30 km"
               onInvalid={(event) => {
                 event.preventDefault();
-                setErro("Informe a distância alvo desejada.");
+                setErro("Informe a distancia alvo desejada.");
               }}
-              required />
+              required
+            />
           </label>
         )}
+
+        {form.possuiProva !== "sim" && (
+          <label className="coach-ia-campo">
+            <span>Duracao do plano *</span>
+            <select
+              name="duracaoSemanas"
+              value={form.duracaoSemanas}
+              onChange={onAlterar}
+              required
+            >
+              {DURACOES_PLANO.map((duracao) => (
+                <option value={duracao.valor} key={duracao.valor}>
+                  {duracao.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+
         <fieldset className="coach-ia-dias">
-          <legend>Dias disponíveis para treinar *</legend>
+          <legend>Dias disponiveis para treinar *</legend>
           <div>
             {DIAS_SEMANA.map((dia) => {
               const selecionado = form.diasDisponiveis.includes(dia.valor);
@@ -120,86 +166,153 @@ function FormularioPlanoSemanal({
             })}
           </div>
         </fieldset>
+
         <fieldset className="coach-ia-radio-grupo">
           <legend>Possui uma prova marcada? *</legend>
           <div>
             <label>
-              <input type="radio" name="possuiProva" value="sim"
-                checked={form.possuiProva === "sim"} onChange={onAlterar} required />
+              <input
+                type="radio"
+                name="possuiProva"
+                value="sim"
+                checked={form.possuiProva === "sim"}
+                onChange={onAlterar}
+                required
+              />
               <span>Sim</span>
             </label>
             <label>
-              <input type="radio" name="possuiProva" value="nao"
-                checked={form.possuiProva === "nao"} onChange={onAlterar} required />
-              <span>Não</span>
+              <input
+                type="radio"
+                name="possuiProva"
+                value="nao"
+                checked={form.possuiProva === "nao"}
+                onChange={onAlterar}
+                required
+              />
+              <span>Nao</span>
             </label>
           </div>
         </fieldset>
+
         {form.possuiProva === "sim" && (
           <>
+            <p className="plano-ia-ajuda coach-ia-largo">
+              A duracao sera definida automaticamente conforme a data da prova,
+              entre 4 e 6 semanas.
+            </p>
+
             <label className="coach-ia-campo">
               <span>Data da prova *</span>
-              <input type="date" name="dataProva" value={form.dataProva}
-                onChange={onAlterar} required />
+              <input
+                type="date"
+                name="dataProva"
+                value={form.dataProva}
+                onChange={onAlterar}
+                required
+              />
             </label>
+
             <label className="coach-ia-campo">
-              <span>Distância da prova *</span>
-              <select name="distanciaProva" value={form.distanciaProva}
-                onChange={onAlterar} required>
+              <span>Distancia da prova *</span>
+              <select
+                name="distanciaProva"
+                value={form.distanciaProva}
+                onChange={onAlterar}
+                required
+              >
                 <option value="">Selecione</option>
                 <OpcoesSelect opcoes={DISTANCIAS_PROVA} />
               </select>
             </label>
+
             {form.distanciaProva === "Outra" && (
               <label className="coach-ia-campo">
-                <span>Qual é a distância? *</span>
-                <input name="outraDistanciaProva" value={form.outraDistanciaProva}
-                  onChange={onAlterar} placeholder="Ex.: 50 km" required />
+                <span>Qual e a distancia? *</span>
+                <input
+                  name="outraDistanciaProva"
+                  value={form.outraDistanciaProva}
+                  onChange={onAlterar}
+                  placeholder="Ex.: 50 km"
+                  required
+                />
               </label>
             )}
+
             <label className="coach-ia-campo">
               <span>Objetivo para a prova</span>
-              <select name="objetivoProva" value={form.objetivoProva}
-                onChange={onAlterar}>
+              <select
+                name="objetivoProva"
+                value={form.objetivoProva}
+                onChange={onAlterar}
+              >
                 <option value="">Selecione</option>
                 <OpcoesSelect opcoes={OBJETIVOS_PROVA} />
               </select>
             </label>
-            {form.objetivoProva === "Buscar um tempo específico" && (
+
+            {form.objetivoProva === "Buscar um tempo especifico" && (
               <label className="coach-ia-campo">
                 <span>Tempo desejado *</span>
-                <input name="tempoDesejadoProva" value={form.tempoDesejadoProva}
-                  onChange={onAlterar} placeholder="Ex.: 45:00 ou 1:35:00" required />
+                <input
+                  name="tempoDesejadoProva"
+                  value={form.tempoDesejadoProva}
+                  onChange={onAlterar}
+                  placeholder="Ex.: 45:00 ou 1:35:00"
+                  required
+                />
               </label>
             )}
+
             <label className="coach-ia-campo">
-              <span>Importância da prova *</span>
-              <select name="importanciaProva" value={form.importanciaProva}
-                onChange={onAlterar} required>
+              <span>Importancia da prova *</span>
+              <select
+                name="importanciaProva"
+                value={form.importanciaProva}
+                onChange={onAlterar}
+                required
+              >
                 <option value="">Selecione</option>
                 <OpcoesSelect opcoes={IMPORTANCIAS_PROVA} />
               </select>
             </label>
           </>
         )}
+
         <label className="coach-ia-lesao">
-          <input type="checkbox" name="possuiLesao"
-            checked={form.possuiLesao} onChange={onAlterar} />
+          <input
+            type="checkbox"
+            name="possuiLesao"
+            checked={form.possuiLesao}
+            onChange={onAlterar}
+          />
           <span className="coach-ia-check" aria-hidden="true">✓</span>
-          <span><strong>Possui lesão ou limitação?</strong>
-            <small>O plano priorizará sua segurança.</small></span>
+          <span>
+            <strong>Possui lesao ou limitacao?</strong>
+            <small>O plano priorizara sua seguranca.</small>
+          </span>
         </label>
+
         {form.possuiLesao && (
           <label className="coach-ia-campo">
-            <span>Descrição da lesão *</span>
-            <textarea name="descricaoLesao" value={form.descricaoLesao}
-              onChange={onAlterar} required />
+            <span>Descricao da lesao *</span>
+            <textarea
+              name="descricaoLesao"
+              value={form.descricaoLesao}
+              onChange={onAlterar}
+              required
+            />
           </label>
         )}
+
         <label className="coach-ia-campo coach-ia-largo">
-          <span>Observações</span>
-          <textarea name="observacoes" value={form.observacoes}
-            onChange={onAlterar} placeholder="Fadiga, preferências ou limitações." />
+          <span>Observacoes</span>
+          <textarea
+            name="observacoes"
+            value={form.observacoes}
+            onChange={onAlterar}
+            placeholder="Fadiga, preferencias ou limitacoes."
+          />
         </label>
       </div>
 
@@ -213,7 +326,7 @@ function FormularioPlanoSemanal({
       <button className="coach-ia-submit" type="submit" disabled={carregando}>
         {carregando
           ? <><span className="coach-ia-spinner" />Gerando plano...</>
-          : <><span>▦</span>Gerar plano semanal</>}
+          : <><span>▦</span>Gerar meu plano</>}
       </button>
     </form>
   );

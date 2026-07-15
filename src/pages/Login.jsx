@@ -55,7 +55,7 @@ function Login({ atualizarToken }) {
       localStorage.setItem("role", dados.role);
 
       atualizarToken();
-      navigate("/plano-semanal-ia");
+      navigate("/meu-plano");
     } catch (error) {
       console.error("Erro ao fazer login", error);
       setErro("E-mail ou senha inválidos.");

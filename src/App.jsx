@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
@@ -8,7 +8,7 @@ import Historico from "./pages/Historico";
 import MeusTreinos from "./pages/MeusTreinos";
 import Calendario from "./pages/Calendario";
 import GerarTreinoIA from "./pages/GerarTreinoIA";
-import PlanoSemanalIA from "./pages/PlanoSemanalIA";
+import MeuPlano from "./pages/MeuPlano";
 import Login from "./pages/Login";
 
 import "./App.css";
@@ -30,7 +30,16 @@ function App() {
             path="/"
             element={
               token
-                ? <PlanoSemanalIA />
+                ? <MeuPlano />
+                : <Login atualizarToken={atualizarToken} />
+            }
+          />
+
+          <Route
+            path="/meu-plano"
+            element={
+              token
+                ? <MeuPlano />
                 : <Login atualizarToken={atualizarToken} />
             }
           />
@@ -84,7 +93,7 @@ function App() {
             path="/plano-semanal-ia"
             element={
               token
-                ? <PlanoSemanalIA />
+                ? <Navigate to="/meu-plano" replace />
                 : <Login atualizarToken={atualizarToken} />
             }
           />
@@ -93,7 +102,7 @@ function App() {
             path="/login"
             element={
               token
-                ? <PlanoSemanalIA />
+                ? <MeuPlano />
                 : <Login atualizarToken={atualizarToken} />
             }
           />

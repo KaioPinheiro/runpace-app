@@ -7,6 +7,17 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.plano-ia-ajuda {
+  margin: 0;
+  padding: 12px 14px;
+  color: #bae6fd;
+  background: rgba(14, 165, 233, .08);
+  border: 1px solid rgba(56, 189, 248, .22);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .plano-ia-resultado {
   margin-top: 30px;
   padding: 30px;
@@ -53,6 +64,36 @@
   font-size: 11px;
 }
 
+.plano-ia-resumo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.plano-ia-resumo div {
+  padding: 14px;
+  background: rgba(2, 6, 23, .34);
+  border: 1px solid rgba(148, 163, 184, .18);
+  border-radius: 8px;
+}
+
+.plano-ia-resumo span {
+  display: block;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.plano-ia-resumo strong {
+  display: block;
+  margin-top: 6px;
+  color: #f8fafc;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
 .plano-ia-observacoes {
   margin-top: 18px;
   color: #94a3b8;
@@ -66,6 +107,70 @@
   background: rgba(245, 158, 11, .09);
   border: 1px solid rgba(245, 158, 11, .25);
   border-radius: 10px;
+}
+
+.plano-ia-semanas-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+  padding-bottom: 4px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.plano-ia-semanas-tabs button {
+  flex: 0 0 auto;
+  min-width: 104px;
+  padding: 9px 12px;
+  color: #bae6fd;
+  background: rgba(15, 23, 42, .78);
+  border: 1px solid rgba(56, 189, 248, .2);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.plano-ia-semanas-tabs button:hover,
+.plano-ia-semanas-tabs .plano-ia-semana-ativa {
+  color: #082f49;
+  background: #7dd3fc;
+  border-color: #7dd3fc;
+}
+
+.plano-ia-semana {
+  margin-top: 22px;
+}
+
+.plano-ia-semana > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, .18);
+}
+
+.plano-ia-semana > header span {
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.plano-ia-semana h3 {
+  margin: 6px 0 0;
+  color: #f8fafc;
+  font-size: 22px;
+}
+
+.plano-ia-semana > header p {
+  max-width: 420px;
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .plano-ia-grid {
@@ -163,6 +268,14 @@
 
   .plano-ia-resultado > header {
     align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .plano-ia-resumo {
+    grid-template-columns: 1fr;
+  }
+
+  .plano-ia-semana > header {
     flex-direction: column;
   }
 

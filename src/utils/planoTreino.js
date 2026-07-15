@@ -3,12 +3,12 @@ import { FORM_INICIAL_PLANO } from "../constants/planoTreino";
 const SEM_VALOR = "—";
 
 const NOMENCLATURAS_TREINO = {
-  "corrida continua": "Corrida contínua",
-  "corida continua": "Corrida contínua",
-  "corrrida continua": "Corrida contínua",
-  "corria continua": "Corrida contínua",
-  rodagem: "Corrida contínua",
-  "corrida leve": "Corrida contínua",
+  "corrida continua": "Corrida continua",
+  "corida continua": "Corrida continua",
+  "corrrida continua": "Corrida continua",
+  "corria continua": "Corrida continua",
+  rodagem: "Corrida continua",
+  "corrida leve": "Corrida continua",
   "corrida longa": "Corrida longa",
   "corida longa": "Corrida longa",
   "corrrida longa": "Corrida longa",
@@ -20,15 +20,15 @@ const NOMENCLATURAS_TREINO = {
   velocidadee: "Treino de velocidade",
   tiro: "Treino de velocidade",
   tiros: "Treino de velocidade",
-  "treino de resistencia": "Treino de resistência",
-  resistencia: "Treino de resistência",
-  "corrida de resistencia": "Treino de resistência",
+  "treino de resistencia": "Treino de resistencia",
+  resistencia: "Treino de resistencia",
+  "corrida de resistencia": "Treino de resistencia",
   intervalado: "Intervalado",
   interbalado: "Intervalado",
   intervalada: "Intervalado",
   fartlek: "Fartlek",
-  "recuperacao ativa": "Recuperação ativa",
-  recuperacao: "Recuperação ativa",
+  "recuperacao ativa": "Recuperacao ativa",
+  recuperacao: "Recuperacao ativa",
   mobilidade: "Mobilidade",
   mobilidadee: "Mobilidade",
   fortalecimento: "Fortalecimento",
@@ -64,7 +64,7 @@ export function normalizarCampoPlano(formulario, campo) {
     ...(name === "distanciaProva" && value !== "Outra"
       ? { outraDistanciaProva: "" }
       : {}),
-    ...(name === "objetivoProva" && value !== "Buscar um tempo específico"
+    ...(name === "objetivoProva" && value !== "Buscar um tempo especifico"
       ? { tempoDesejadoProva: "" }
       : {})
   };
@@ -92,7 +92,7 @@ export function alternarDiaDisponivel(formulario, dia) {
 
 export function validarFormularioPlano(formulario) {
   if (formulario.diasDisponiveis.length === 0) {
-    return "Selecione pelo menos um dia disponível para treinar.";
+    return "Selecione pelo menos um dia disponivel para treinar.";
   }
 
   if (
@@ -106,7 +106,23 @@ export function validarFormularioPlano(formulario) {
     formulario.distanciaAlvo === "Outro" &&
     !formulario.outraDistanciaAlvo.trim()
   ) {
-    return "Informe a distância alvo desejada.";
+    return "Informe a distancia alvo desejada.";
+  }
+
+  return null;
+}
+
+export function validarFormularioMeuPlano(formulario) {
+  const erroBase = validarFormularioPlano(formulario);
+  if (erroBase) {
+    return erroBase;
+  }
+
+  if (
+    formulario.possuiProva !== "sim" &&
+    !["4", "5", "6"].includes(String(formulario.duracaoSemanas))
+  ) {
+    return "Escolha uma duracao de 4, 5 ou 6 semanas.";
   }
 
   return null;
@@ -131,6 +147,40 @@ export function montarPayloadPlanoSemanal(formulario) {
     possuiProva: formulario.possuiProva === "sim",
     intensidadeDesejada: "adequada ao perfil informado",
     observacoes: observacoes.trim()
+  };
+}
+
+export function montarPayloadMeuPlano(formulario) {
+  const possuiProva = formulario.possuiProva === "sim";
+  const objetivo = formulario.objetivo === "Outro"
+    ? formulario.objetivoPersonalizado.trim()
+    : formulario.objetivo;
+  const distanciaAlvo = formulario.distanciaAlvo === "Outro"
+    ? formulario.outraDistanciaAlvo.trim()
+    : formulario.distanciaAlvo;
+  const distanciaProva = formulario.distanciaProva === "Outra"
+    ? formulario.outraDistanciaProva.trim()
+    : formulario.distanciaProva;
+  const observacoes = formulario.possuiLesao && formulario.descricaoLesao.trim()
+    ? `${formulario.observacoes.trim()} Lesao ou limitacao: ${formulario.descricaoLesao.trim()}`.trim()
+    : formulario.observacoes.trim();
+
+  return {
+    objetivo,
+    experienciaCorrida: formulario.experienciaCorrida,
+    volumeSemanalAtual: formulario.volumeSemanalAtual,
+    ritmoConfortavel: formulario.ritmoConfortavel,
+    distanciaAlvo,
+    diasDisponiveis: formulario.diasDisponiveis,
+    possuiProva,
+    dataProva: possuiProva ? formulario.dataProva : null,
+    distanciaProva: possuiProva ? distanciaProva : null,
+    objetivoProva: possuiProva ? formulario.objetivoProva : null,
+    tempoDesejado: possuiProva ? formulario.tempoDesejadoProva : null,
+    importanciaProva: possuiProva ? formulario.importanciaProva : null,
+    possuiLesao: formulario.possuiLesao,
+    observacoes,
+    duracaoSemanas: possuiProva ? null : Number(formulario.duracaoSemanas)
   };
 }
 

@@ -10,6 +10,7 @@ export const FORM_INICIAL_PLANO = {
   ritmoConfortavel: "",
   distanciaAlvo: "",
   outraDistanciaAlvo: "",
+  duracaoSemanas: "4",
   diasDisponiveis: [],
   possuiLesao: false,
   descricaoLesao: "",
@@ -24,10 +25,17 @@ export const FORM_INICIAL_PLANO = {
 };
 
 export const MENSAGENS_LOADING_PLANO = [
-  "Analisando sua rotina...",
-  "Distribuindo os estímulos...",
-  "Montando sua semana...",
+  "Analisando seu objetivo...",
+  "Organizando sua progressao...",
+  "Distribuindo os treinos...",
+  "Estruturando suas semanas...",
   "Finalizando seu plano..."
+];
+
+export const DURACOES_PLANO = [
+  { valor: "4", label: "4 semanas" },
+  { valor: "5", label: "5 semanas" },
+  { valor: "6", label: "6 semanas" }
 ];
 
 export const OBJETIVOS_PLANO = [
@@ -54,26 +62,26 @@ export const EXPERIENCIAS_CORRIDA = [
 ];
 
 export const VOLUMES_SEMANAIS = [
-  "Não sei informar",
-  "Ainda não corro",
+  "Nao sei informar",
+  "Ainda nao corro",
   "Menos de 10 km",
-  "10–20 km",
-  "20–40 km",
-  "40–60 km",
-  "60–80 km",
+  "10-20 km",
+  "20-40 km",
+  "40-60 km",
+  "60-80 km",
   "80+ km"
 ];
 
 export const RITMOS_CONFORTAVEIS = [
-  "Ainda não sei informar",
+  "Ainda nao sei informar",
   "Caminhada / trote leve",
   "Acima de 7:00 min/km",
-  "6:30–7:00 min/km",
-  "6:00–6:30 min/km",
-  "5:30–6:00 min/km",
-  "5:00–5:30 min/km",
-  "4:30–5:00 min/km",
-  "4:00–4:30 min/km",
+  "6:30-7:00 min/km",
+  "6:00-6:30 min/km",
+  "5:30-6:00 min/km",
+  "5:00-5:30 min/km",
+  "4:30-5:00 min/km",
+  "4:00-4:30 min/km",
   "Abaixo de 4:00 min/km"
 ];
 
@@ -100,7 +108,7 @@ export const DISTANCIAS_PROVA = [
 export const OBJETIVOS_PROVA = [
   "Completar a prova",
   "Bater meu recorde pessoal",
-  "Buscar um tempo específico"
+  "Buscar um tempo especifico"
 ];
 
 export const IMPORTANCIAS_PROVA = [
