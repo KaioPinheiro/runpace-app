@@ -90,7 +90,7 @@ function MeuPlano() {
     } catch (error) {
       setErro(obterMensagemErroIa(
         error,
-        "Nao foi possivel gerar seu plano agora. Tente novamente em alguns instantes."
+        "Não foi possível gerar seu plano agora. Tente novamente em alguns instantes."
       ));
     } finally {
       setCarregando(false);
@@ -104,7 +104,7 @@ function MeuPlano() {
         <h1>Meu Plano</h1>
         <p>
           Receba um ciclo de corrida personalizado para sua prova-alvo ou para
-          o objetivo que deseja alcancar.
+          o objetivo que deseja alcançar.
         </p>
       </header>
 

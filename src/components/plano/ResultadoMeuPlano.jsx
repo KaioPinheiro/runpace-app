@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import {
+  ehTreinoCorrida,
   formatarDistancia,
   formatarDuracao,
   formatarPace,
@@ -29,6 +30,10 @@ function ResultadoMeuPlano({ plano, carregando, onGerarNovamente }) {
   const [semanaAtiva, setSemanaAtiva] = useState(0);
   const semanas = useMemo(() => plano?.semanas ?? [], [plano]);
   const semanaSelecionada = semanas[semanaAtiva] ?? semanas[0];
+  const treinosCorrida = useMemo(
+    () => (semanaSelecionada?.treinos ?? []).filter(ehTreinoCorrida),
+    [semanaSelecionada]
+  );
 
   if (!plano) {
     return null;
@@ -89,7 +94,7 @@ function ResultadoMeuPlano({ plano, carregando, onGerarNovamente }) {
           </header>
 
           <div className="plano-ia-grid">
-            {(semanaSelecionada.treinos ?? []).map((treino) => (
+            {treinosCorrida.map((treino) => (
               <CardTreinoDia treino={treino} key={treino.diaSemana} />
             ))}
           </div>

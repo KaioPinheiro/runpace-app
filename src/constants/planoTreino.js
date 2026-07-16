@@ -3,6 +3,7 @@ import { DIAS_SEMANA } from "./diasSemana";
 export { DIAS_SEMANA };
 
 export const FORM_INICIAL_PLANO = {
+  idade: "",
   objetivo: "",
   objetivoPersonalizado: "",
   experienciaCorrida: "",
@@ -12,6 +13,7 @@ export const FORM_INICIAL_PLANO = {
   outraDistanciaAlvo: "",
   duracaoSemanas: "4",
   diasDisponiveis: [],
+  diaLongao: "",
   possuiLesao: false,
   descricaoLesao: "",
   possuiProva: "",
@@ -26,7 +28,7 @@ export const FORM_INICIAL_PLANO = {
 
 export const MENSAGENS_LOADING_PLANO = [
   "Analisando seu objetivo...",
-  "Organizando sua progressao...",
+  "Organizando sua progressão...",
   "Distribuindo os treinos...",
   "Estruturando suas semanas...",
   "Finalizando seu plano..."
@@ -39,22 +41,34 @@ export const DURACOES_PLANO = [
 ];
 
 export const OBJETIVOS_PLANO = [
-  "Emagrecer",
   "Melhorar condicionamento",
-  "Melhorar pace",
+  "Emagrecer",
   "Primeiros 5 km",
   "Primeiros 10 km",
-  "Primeira meia maratona",
-  "Primeira maratona",
-  "Sub 20 nos 5 km",
-  "Sub 40 nos 10 km",
-  "RP na meia",
-  "RP na maratona",
+  "Primeira Meia Maratona",
+  "Primeira Maratona",
+  "Sub 30 nos 5 km",
   "Outro"
 ];
 
+export const EXPERIENCIA_SEM_CORRIDA = "Nunca corri";
+export const EXPERIENCIA_PARADO = "Estou parado(a)";
+
+export const EXPERIENCIAS_INICIANTES = [
+  EXPERIENCIA_SEM_CORRIDA,
+  EXPERIENCIA_PARADO
+];
+
+export const OBJETIVOS_PLANO_SEM_EXPERIENCIA = [
+  "Emagrecer",
+  "Melhorar condicionamento",
+  "Primeiros 5 km",
+  "Primeiros 10 km"
+];
+
 export const EXPERIENCIAS_CORRIDA = [
-  "Nunca corri",
+  EXPERIENCIA_SEM_CORRIDA,
+  EXPERIENCIA_PARADO,
   "Menos de 6 meses",
   "6 meses a 1 ano",
   "1 a 3 anos",
@@ -62,8 +76,7 @@ export const EXPERIENCIAS_CORRIDA = [
 ];
 
 export const VOLUMES_SEMANAIS = [
-  "Nao sei informar",
-  "Ainda nao corro",
+  "Não sei informar",
   "Menos de 10 km",
   "10-20 km",
   "20-40 km",
@@ -73,7 +86,7 @@ export const VOLUMES_SEMANAIS = [
 ];
 
 export const RITMOS_CONFORTAVEIS = [
-  "Ainda nao sei informar",
+  "Ainda não sei informar",
   "Caminhada / trote leve",
   "Acima de 7:00 min/km",
   "6:30-7:00 min/km",
@@ -108,7 +121,7 @@ export const DISTANCIAS_PROVA = [
 export const OBJETIVOS_PROVA = [
   "Completar a prova",
   "Bater meu recorde pessoal",
-  "Buscar um tempo especifico"
+  "Buscar um tempo específico"
 ];
 
 export const IMPORTANCIAS_PROVA = [

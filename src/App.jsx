@@ -23,25 +23,17 @@ function App() {
   return (
     <BrowserRouter>
       <main className="container">
-        {token && <Navbar atualizarToken={atualizarToken} />}
+        <Navbar atualizarToken={atualizarToken} />
 
         <Routes>
           <Route
             path="/"
-            element={
-              token
-                ? <MeuPlano />
-                : <Login atualizarToken={atualizarToken} />
-            }
+            element={<Navigate to="/meu-plano" replace />}
           />
 
           <Route
             path="/meu-plano"
-            element={
-              token
-                ? <MeuPlano />
-                : <Login atualizarToken={atualizarToken} />
-            }
+            element={<MeuPlano />}
           />
 
           <Route
@@ -91,20 +83,12 @@ function App() {
 
           <Route
             path="/plano-semanal-ia"
-            element={
-              token
-                ? <Navigate to="/meu-plano" replace />
-                : <Login atualizarToken={atualizarToken} />
-            }
+            element={<Navigate to="/meu-plano" replace />}
           />
 
           <Route
             path="/login"
-            element={
-              token
-                ? <MeuPlano />
-                : <Login atualizarToken={atualizarToken} />
-            }
+            element={<Login atualizarToken={atualizarToken} />}
           />
         </Routes>
       </main>
