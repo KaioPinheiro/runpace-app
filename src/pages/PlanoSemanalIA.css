@@ -175,7 +175,7 @@
 
 .plano-ia-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 15px;
   margin-top: 26px;
 }
@@ -257,6 +257,105 @@
   line-height: 1.45;
 }
 
+.plano-blocos {
+  margin: 20px 0 16px;
+  padding-top: 16px;
+  border-top: 1px solid #334155;
+}
+
+.plano-blocos h4 {
+  margin: 0 0 12px;
+  color: #e2e8f0;
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.plano-blocos-lista,
+.plano-bloco-repeticao-passos {
+  display: grid;
+  gap: 10px;
+}
+
+.plano-bloco {
+  display: flex;
+  overflow: hidden;
+  min-width: 0;
+  background: rgba(15, 23, 42, .92);
+  border: 1px solid #334155;
+  border-radius: 10px;
+}
+
+.plano-bloco::before {
+  flex: 0 0 6px;
+  background: #38bdf8;
+  content: "";
+}
+
+.plano-bloco-aquecimento::before { background: #fb7185; }
+.plano-bloco-corrida::before { background: #38bdf8; }
+.plano-bloco-recuperacao::before { background: #94a3b8; }
+.plano-bloco-desaquecimento::before { background: #4ade80; }
+
+.plano-bloco-conteudo {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+}
+
+.plano-bloco-cabecalho {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.plano-bloco-cabecalho strong {
+  color: #f8fafc;
+  font-size: 15px;
+}
+
+.plano-bloco-cabecalho span,
+.plano-bloco-pace {
+  color: #7dd3fc;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.plano-bloco-conteudo > p {
+  min-height: 0;
+  margin: 7px 0 0;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.plano-bloco-repeticao {
+  padding: 12px;
+  background: rgba(2, 6, 23, .4);
+  border: 1px solid #475569;
+  border-radius: 10px;
+}
+
+.plano-bloco-repeticao > header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.plano-bloco-repeticao > header strong {
+  color: #f8fafc;
+  font-size: 16px;
+}
+
+.plano-bloco-repeticao > header span {
+  color: #94a3b8;
+  font-size: 11px;
+  text-align: right;
+}
+
 @media (max-width: 600px) {
   .plano-ia-campos {
     grid-template-columns: 1fr;
@@ -281,5 +380,16 @@
 
   .plano-ia-grid {
     grid-template-columns: 1fr;
+  }
+
+  .plano-bloco-cabecalho,
+  .plano-bloco-repeticao > header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plano-bloco-repeticao > header span {
+    text-align: left;
   }
 }

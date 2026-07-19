@@ -609,10 +609,9 @@ export function formatarPace(valor) {
 
   const texto = String(valor)
     .trim()
-    .replace(/\s*-\s*/g, "â€“")
-    .replace(/\s*â€“\s*/g, "â€“");
+    .replace(/\s*(?:-|–|—|â€“|â€”)+\s*/g, "-");
 
-  if (/^\d+:\d{2}(?:â€“\d+:\d{2})?$/.test(texto)) {
+  if (/^\d+:\d{2}(?:-\d+:\d{2})?$/.test(texto)) {
     return `${texto} min/km`;
   }
 

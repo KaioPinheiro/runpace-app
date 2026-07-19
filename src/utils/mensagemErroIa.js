@@ -1,9 +1,9 @@
 export function obterMensagemErroIa(error, mensagemIndisponivel) {
   const status = error?.response?.status;
   const codigo = error?.code;
+  const dadosErro = error?.response?.data;
   const mensagemBackend =
-    error?.response?.data?.erro ??
-    error?.response?.data?.message ??
+    extrairMensagemBackend(dadosErro) ??
     "";
   const mensagemOriginal = String(
     mensagemBackend ||
@@ -31,9 +31,32 @@ export function obterMensagemErroIa(error, mensagemIndisponivel) {
     return "Verifique sua conexao e tente novamente.";
   }
 
-  if (status >= 400 && status < 500 && mensagemBackend) {
+  if (status >= 400 && mensagemBackend) {
     return String(mensagemBackend);
   }
 
   return mensagemIndisponivel;
+}
+
+function extrairMensagemBackend(dadosErro) {
+  if (!dadosErro) {
+    return "";
+  }
+
+  if (typeof dadosErro === "string") {
+    return dadosErro;
+  }
+
+  if (dadosErro.erro || dadosErro.message || dadosErro.mensagem) {
+    return dadosErro.erro ?? dadosErro.message ?? dadosErro.mensagem;
+  }
+
+  if (typeof dadosErro === "object") {
+    const mensagens = Object.values(dadosErro).filter(Boolean);
+    if (mensagens.length > 0) {
+      return mensagens.join(" ");
+    }
+  }
+
+  return "";
 }
