@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
@@ -10,25 +10,26 @@ import Calendario from "./pages/Calendario";
 import GerarTreinoIA from "./pages/GerarTreinoIA";
 import MeuPlano from "./pages/MeuPlano";
 import Login from "./pages/Login";
+import LandingPage from "./pages/LandingPage";
 
 import "./App.css";
 
-function App() {
+function AppRoutes() {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const location = useLocation();
 
   function atualizarToken() {
     setToken(localStorage.getItem("token"));
   }
 
   return (
-    <BrowserRouter>
-      <main className="container">
-        <Navbar atualizarToken={atualizarToken} />
+    <div className={location.pathname === "/" ? "landing-root" : "container"}>
+        {location.pathname !== "/" && <Navbar atualizarToken={atualizarToken} />}
 
         <Routes>
           <Route
             path="/"
-            element={<Navigate to="/meu-plano" replace />}
+            element={<LandingPage />}
           />
 
           <Route
@@ -91,7 +92,14 @@ function App() {
             element={<Login atualizarToken={atualizarToken} />}
           />
         </Routes>
-      </main>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

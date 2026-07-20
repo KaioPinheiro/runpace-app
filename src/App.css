@@ -1,3 +1,11 @@
+.container {
+  width: min(1126px, 100%);
+  min-height: 100svh;
+  margin: 0 auto;
+  border-inline: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
 .card-acoes {
   display: flex;
   gap: 12px;
